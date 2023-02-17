@@ -19,6 +19,15 @@ public class Main {
         for (KnapsackObject o : List) {
             System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
         }
+
+
+        //Sort the objects descending
+        List.sort(obj::compareTo);
+
+        System.out.println("SORTED:");
+        for (obj o : List) {
+            System.out.println("Item:" + o.getItem() + " Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
+        }
     }
 
 }
