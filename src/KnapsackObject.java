@@ -1,25 +1,37 @@
-public class KnapsackObject {
-    private float weight;
-    private float profit;
+public class KnapsackObject implements Comparable{
+    private double weight;
+    private double value;
+    private final double density;
 
-    public float getWeight() {
+    @Override
+    public int compareTo(Object o) {
+        if (this.density == ((KnapsackObject) o).density){
+            return 0;
+        }
+        if (this.density > ((KnapsackObject) o).density){
+            return 1;
+        }
+        return -1;
+    }
+
+    KnapsackObject(double weight, double value){
+        this.weight = weight;
+        this. value = value;
+
+        this.density = value / weight;
+
+    }
+
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public double getValue() {
+        return value;
     }
 
-    public float getProfit() {
-        return profit;
+    public double getDensity() {
+        return density;
     }
 
-    public void setProfit(float profit) {
-        this.profit = profit;
-    }
-
-    public KnapsackObject(float weight, float profit) {
-        this.weight = weight;
-        this.profit = profit;
-    }
 }
