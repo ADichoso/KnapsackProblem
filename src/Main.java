@@ -22,11 +22,11 @@ public class Main {
 
 
         //Sort the objects descending
-        List.sort(obj::compareTo);
+        List.sort(KnapsackObject::compareTo);
 
         System.out.println("SORTED:");
-        for (obj o : List) {
-            System.out.println("Item:" + o.getItem() + " Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
+        for (KnapsackObject o : List) {
+            System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
         }
     }
 
