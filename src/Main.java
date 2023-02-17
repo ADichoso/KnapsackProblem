@@ -41,29 +41,30 @@ public class Main {
         int curr_capacity = (int) (capacity * 100);
         int max_profit = 0;
         for (KnapsackObject o: List) {
-
-            if(curr_capacity >= (int) (o.getWeight() * 100))
+            int curr_weight = (int) (o.getWeight() * 100);
+            int curr_val = (int) (o.getValue() * 100);
+            int curr_density = (int) (o.getDensity() * 100);
+            if(curr_capacity >= curr_weight)
             {
-                curr_capacity -= (int) (o.getWeight() * 100);
-                max_profit += (int) (o.getValue() * 100);
+                curr_capacity -= curr_weight;
+                max_profit += curr_val;
             }
-            else if(curr_capacity >= (int) (o.getDensity() * 100))
+            else if(curr_capacity >= curr_density)
             {
                 int curr_item = 0;
-                while(curr_item < o.getWeight() && curr_capacity > 0)
+                while(curr_item < curr_weight && curr_capacity > 0)
                 {
-                    curr_item += (int) (o.getDensity() * 100);
-                    curr_capacity -= (int) (o.getDensity() * 100);
+                    curr_item += (int)(o.getDensity() * o.getWeight() * 100);
+                    curr_capacity -= (int)(o.getDensity() * o.getWeight() * 100);
                     max_profit += (int)(o.getDensity() * o.getValue() * 100);
+                    System.out.println("Curr Item: " + curr_item + " Curr Capacity: " + curr_capacity + " Max Profit: " + max_profit);
                 }
             }
-            System.out.println(" Curr Capacity: " + curr_capacity + " Max Profit: " + max_profit);
-
-            //Add parts of the item until it gets full
-
+            System.out.println("Curr Capacity: " + curr_capacity + " Max Profit: " + max_profit);
         }
 
-        System.out.println("Max Profit: " + max_profit);
+        float final_profit = max_profit / 100.0f;
+        System.out.format("Max Profit: %.2f", final_profit);
     }
 
 }
