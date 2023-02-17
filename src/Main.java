@@ -16,6 +16,7 @@ public class Main {
             List.add(object);
         }
 
+        //Prints initial array
         for (KnapsackObject o : List) {
             System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
         }
@@ -24,10 +25,32 @@ public class Main {
         //Sort the objects descending
         List.sort(KnapsackObject::compareTo);
 
+        //Prints sorted array
         System.out.println("SORTED:");
         for (KnapsackObject o : List) {
             System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
         }
+
+        System.out.println("Enter the capacity of the knapsack:-");
+        float capacity = sc.nextFloat();
+
+        float curr_capacity = capacity;
+        float max_profit = 0;
+        for (KnapsackObject o: List) {
+            float curr_item = 0;
+            //Add parts of the item until it gets full
+            while(curr_item != o.getWeight())
+            {
+                if(curr_capacity >= o.getDensity())
+                {
+                    curr_item += o.getDensity();
+                    curr_capacity -= o.getDensity();
+                    max_profit += o.getDensity() * o.getValue();
+                }
+            }
+        }
+
+        System.out.println("Max Profit: " + max_profit);
     }
 
 }

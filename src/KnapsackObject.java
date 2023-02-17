@@ -8,7 +8,7 @@ public class KnapsackObject implements Comparable{
         if (this.density == ((KnapsackObject) o).density){
             return 0;
         }
-        if (this.density > ((KnapsackObject) o).density){
+        if (this.density < ((KnapsackObject) o).density){
             return 1;
         }
         return -1;
