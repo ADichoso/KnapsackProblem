@@ -17,9 +17,10 @@ public class Main {
         }
 
         //Prints initial array
+        /*
         for (KnapsackObject o : List) {
             System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
-        }
+        }*/
 
 
         //Sort the objects descending
@@ -27,27 +28,39 @@ public class Main {
 
         //Prints sorted array
         System.out.println("SORTED:");
+        /*
         for (KnapsackObject o : List) {
             System.out.println(" Weight:" + o.getWeight() + " Profits:" + o.getValue() + " Density:" +o.getDensity());
-        }
+        }*/
 
         System.out.println("Enter the capacity of the knapsack:-");
-        float capacity = sc.nextFloat();
+        double capacity = sc.nextFloat();
 
-        float curr_capacity = capacity;
-        float max_profit = 0;
+
+
+        int curr_capacity = (int) (capacity * 100);
+        int max_profit = 0;
         for (KnapsackObject o: List) {
-            float curr_item = 0;
-            //Add parts of the item until it gets full
-            while(curr_item != o.getWeight())
+
+            if(curr_capacity >= (int) (o.getWeight() * 100))
             {
-                if(curr_capacity >= o.getDensity())
+                curr_capacity -= (int) (o.getWeight() * 100);
+                max_profit += (int) (o.getValue() * 100);
+            }
+            else if(curr_capacity >= (int) (o.getDensity() * 100))
+            {
+                int curr_item = 0;
+                while(curr_item < o.getWeight() && curr_capacity > 0)
                 {
-                    curr_item += o.getDensity();
-                    curr_capacity -= o.getDensity();
-                    max_profit += o.getDensity() * o.getValue();
+                    curr_item += (int) (o.getDensity() * 100);
+                    curr_capacity -= (int) (o.getDensity() * 100);
+                    max_profit += (int)(o.getDensity() * o.getValue() * 100);
                 }
             }
+            System.out.println(" Curr Capacity: " + curr_capacity + " Max Profit: " + max_profit);
+
+            //Add parts of the item until it gets full
+
         }
 
         System.out.println("Max Profit: " + max_profit);
