@@ -10,9 +10,9 @@ public class obj implements Comparable{
             return 0;
         }
         if (this.density > ((obj) o).density){
-            return 1;
+            return -1;
         }
-        return -1;
+        return 1;
     }
 
     obj(int item, double weight, double value){
